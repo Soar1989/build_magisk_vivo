@@ -70,7 +70,7 @@ jobs:
       - name: Update Magisk Version
         run: |
           cp Magisk/config.prop.sample Magisk/config.prop
-          sed -i s/version=string/version=23.0/g Magisk/config.prop
+          sed -i s/version=string/version=24.1/g Magisk/config.prop
           curl -s https://android.googlesource.com/platform/build/+/refs/heads/master/target/product/security/testkey.x509.pem?format=TEXT | base64 -d > testkey.x509.pem
           curl -s https://android.googlesource.com/platform/build/+/refs/heads/master/target/product/security/testkey.pk8?format=TEXT | base64 -d > testkey.pk8
           openssl pkcs8 -in testkey.pk8 -inform DER -outform PEM -out testkey.priv.pem -nocrypt
