@@ -110,6 +110,6 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Magisk-test.apk
+          name: Magisk-Soar.apk
           path: Magisk/out/app-release.apk
  
