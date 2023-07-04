@@ -1,8 +1,9 @@
 name: Magisk Build
 
 on:
-  push:
-    branches: [ master ]
+  #push:
+   # branches: [ master ]
+    workflow_dispatch:
 
 jobs:
   build:
