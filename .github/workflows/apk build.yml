@@ -17,9 +17,9 @@ jobs:
       - name: Check out Magisk
         uses: actions/checkout@v3
         with:
-          #path: Magisk
-          #repository: topjohnwu/Magisk
-          #ref: f822ca5b23bea0a1b7a6e97841e253398e79fb8e
+          path: Magisk
+          repository: topjohnwu/Magisk
+          ref: f822ca5b23bea0a1b7a6e97841e253398e79fb8e
           submodules: 'recursive'
           fetch-depth: 0
 
