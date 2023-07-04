@@ -12,32 +12,33 @@ jobs:
 
     steps:
       - name: Check out patches
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check out Magisk
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          path: Magisk
-          repository: topjohnwu/Magisk
-          ref: f822ca5b23bea0a1b7a6e97841e253398e79fb8e
+          #path: Magisk
+          #repository: topjohnwu/Magisk
+          #ref: f822ca5b23bea0a1b7a6e97841e253398e79fb8e
           submodules: 'recursive'
           fetch-depth: 0
 
       - name: Check out libsu
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: libsu
           repository: topjohnwu/libsu
           ref: fb87c2464d127a5eaef5216792dd05cd8ef6123c
           fetch-depth: 0
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          distribution: "temurin"
+          java-version: '17'
 
       - name: Set up Python 3
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -71,7 +72,7 @@ jobs:
       - name: Update Magisk Version
         run: |
           cp Magisk/config.prop.sample Magisk/config.prop
-          sed -i s/version=string/version=24.1/g Magisk/config.prop
+          sed -i s/version=string/version=26.1/g Magisk/config.prop
           curl -s https://android.googlesource.com/platform/build/+/refs/heads/master/target/product/security/testkey.x509.pem?format=TEXT | base64 -d > testkey.x509.pem
           curl -s https://android.googlesource.com/platform/build/+/refs/heads/master/target/product/security/testkey.pk8?format=TEXT | base64 -d > testkey.pk8
           openssl pkcs8 -in testkey.pk8 -inform DER -outform PEM -out testkey.priv.pem -nocrypt
@@ -94,7 +95,7 @@ jobs:
           python build.py -vr all
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Magisk.apk
           path: Magisk/out/app-release.apk
@@ -109,7 +110,7 @@ jobs:
           python build.py -vr all
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Magisk-Soar.apk
           path: Magisk/out/app-release.apk
